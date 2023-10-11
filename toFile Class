@@ -1,0 +1,39 @@
+package sharpr_chapt15;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+
+public class ToFile {
+    private int fileNum;
+    
+    public ToFile() {
+        fileNum = 0;
+    }
+    public ToFile(int fileNum) {
+        this.fileNum = fileNum;
+    }
+    public void setToFile(int fileNum) {
+        this.fileNum = fileNum;
+    }
+    public int getToFile(int fileNum) {
+        return fileNum;
+    }
+    public void sendToFile(int fileNum) {
+         //creating file
+        try (PrintWriter out = new PrintWriter(
+                               new BufferedWriter(
+                               new FileWriter("primeNumber.txt")))) {
+            //writing to file
+            out.print(fileNum);
+            
+        }
+        //catching error if found
+        catch (IOException e){
+          System.out.println(e);
+        }
+    }
+    }
+
