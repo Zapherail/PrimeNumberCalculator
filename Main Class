@@ -1,0 +1,66 @@
+package sharpr_chapt15;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SharpR_Chapt15 {
+
+    
+    public static void main(String[] args) {
+        //Bring Scanner in
+        Scanner sc = new Scanner(System.in);
+        //making ArrayList
+        ArrayList<Integer> factors = new ArrayList<>();
+        //Bringing in ToFile class
+        ToFile s = new ToFile();
+        //Making header
+        System.out.println("Prime Number Checker");
+        System.out.println();
+        System.out.println();
+        //Making while loop
+        String choice = "y";
+        while (choice.equalsIgnoreCase("y")) {
+            System.out.print("Please endter an integer between 1 and 5000: ");
+            String nonParseNum = sc.nextLine();
+            int userNum = Integer.parseInt(nonParseNum);
+            //creating user validation 
+             if (userNum > 5000 || userNum < 1) {
+                 System.out.println();
+                 System.out.print("Integer number must be between 1 and 5000. \n");
+                 choice = "y";
+             }else {
+                 //sending userNum to, ToFile class
+                 s.sendToFile(userNum);
+                 //running the math to see what userNum is divisible by
+                for (int i = 1; i <= userNum; ++i) {
+                if (userNum % i == 0) {
+                    factors.add(i);
+                    //sending number to, ToFile class
+                    s.sendToFile(i);
+                }
+                    
+                }
+                 }
+                 int listSize = factors.size();
+                 //checking listsize for more than 2 entries
+                 if (listSize == 2){
+                     System.out.println(nonParseNum + " is a prime number");
+                     
+                 }else{     
+                 System.out.println();
+                 System.out.print(nonParseNum + " is NOT a prime number." + "\n" + "It has " + listSize + " factors: ");
+                for (int num : factors){
+                     System.out.print(num + " ");
+                 }
+                //clearing ArrayList
+                factors.clear();
+                 System.out.println();
+                 System.out.print("Try again? (y/n): ");
+                 choice = sc.nextLine();
+             }//end of if/else
+             
+        }//end of while
+        System.out.println("Bye!");
+    }//end of main
+    
+}//end of class
